@@ -1,4 +1,5 @@
 <script setup>
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
@@ -12,7 +13,7 @@
           relax because we’ll give you a truly out of this world experience!</p>
       </div>
       <div class="button">
-        <button>Explore</button>
+        <RouterLink to="/destination"><button>Explore</button></RouterLink>
       </div>
     </div>
   </div>
@@ -23,32 +24,17 @@
   display: flex;
   place-content: space-between;
   place-items: end;
-  padding: 251px 165px 0;
+  padding-top: calc(251px - 76px);
+  padding-bottom: 131px;
+  padding-right: 165px;
 }
 
-h1,
-h5,
 button {
   text-transform: uppercase;
 }
 
-h5,
-p {
-  color: var(--color-2);
-}
-
-h1 {
-  line-height: 172px;
-}
-
 h5 {
-  letter-spacing: 4.725px;
-  line-height: 34px;
-}
-
-p {
-  font-size: 18px;
-  line-height: 32px;
+  color: var(--color-2);
 }
 
 .description {
@@ -93,7 +79,7 @@ p {
 
       &::before {
         background: var(--color-3);
-        opacity: .5;
+        opacity: .1;
       }
     }
   }

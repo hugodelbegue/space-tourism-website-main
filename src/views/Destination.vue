@@ -1,37 +1,37 @@
 <script setup>
-
+import Destination from '@/assets/data/data.json'
 </script>
 
 <template>
     <div class="destination">
         <div class="destination_layout">
             <h5><span>01</span>Pick your destination</h5>
-            <div class="destination_container">
-                <div class="picture_container">
-                    <img src="../assets/img/destination/image-moon.png" alt="">
-                </div>
-                <div class="description">
-                    <div class="planet_nav">
-                        <ul>
-                            <li>Moon</li>
-                            <li>Mars</li>
-                            <li>Europa</li>
-                            <li>Titan</li>
-                        </ul>
+            <div class="content" v-for="data in Destination.destinations">
+                <div class="destination_container" v-if="data.name == this.name">
+                    <div class="picture_container appearance" v-if="data.images['webp']">
+                        <img :src="imgUrl(data.images['webp'])" :alt="data.name + ' planet image'">
                     </div>
-                    <h2>Moon</h2>
-                    <p> See our planet as you’ve never seen it before. A perfect relaxing trip away to help
-                        regain perspective and come back refreshed. While you’re there, take in some history
-                        by visiting the Luna 2 and Apollo 11 landing sites.</p>
-                    <hr>
-                    <div class="statistics">
-                        <div class="distance">
-                            <div class="indicative">Avg. distance</div>
-                            <span class="number">384,400 km</span>
+                    <div class="description">
+                        <div class="planet_nav">
+                            <ul>
+                                <li @click="page('Moon')" :class="moon">Moon</li>
+                                <li @click="page('Mars')" :class="mars">Mars</li>
+                                <li @click="page('Europa')" :class="europa">Europa</li>
+                                <li @click="page('Titan')" :class="titan">Titan</li>
+                            </ul>
                         </div>
-                        <div class="time">
-                            <div class="indicative">Est. travel time</div>
-                            <span class="number">3 days</span>
+                        <h2 class="offsetX" v-if="data.name">{{ data.name }}</h2>
+                        <p class="offsetX" v-if="data.description">{{ data.description }}</p>
+                        <hr>
+                        <div class="statistics offsetY" v-if="data.distance && data.travel">
+                            <div class="distance">
+                                <div class="indicative">Avg. distance</div>
+                                <span class="number">{{ data.distance }}</span>
+                            </div>
+                            <div class="time">
+                                <div class="indicative">Est. travel time</div>
+                                <span class="number">{{ data.travel }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -40,26 +40,65 @@
     </div>
 </template>
 
+<script>
+export default {
+    data() {
+        return {
+            name: 'Moon',
+            imgUrl(file) {
+                return new URL(`../assets/img/destination/${file}`, import.meta.url).href;
+            }
+        }
+    },
+    methods: {
+        page(name) {
+            if (name == Destination['destinations'][0].name) {
+                return this.name = 'Moon';
+            } else if (name == Destination['destinations'][1].name) {
+                return this.name = 'Mars';
+            } else if (name == Destination['destinations'][2].name) {
+                return this.name = 'Europa';
+            } else if (name == Destination['destinations'][3].name) {
+                return this.name = 'Titan';
+            }
+        }
+    },
+    computed: {
+        moon() {
+            return {
+                focus: this.name == 'Moon'
+            }
+        },
+        mars() {
+            return {
+                focus: this.name == 'Mars'
+            }
+        },
+        europa() {
+            return {
+                focus: this.name == 'Europa'
+            }
+        },
+        titan() {
+            return {
+                focus: this.name == 'Titan'
+            }
+        }
+    }
+}
+</script>
+
 <style lang="scss" scoped>
 .destination_layout {
-    padding-top: 76px;
-    padding-left: 166.5px;
-    padding-right: 163px;
     padding-bottom: 118px;
+    padding-right: 165px;
 
     h2 {
-        line-height: 115px;
         margin: 37px 0 14px;
     }
 
     h5 {
         margin-bottom: 64px;
-
-        span {
-            mix-blend-mode: normal;
-            opacity: 0.25;
-            margin-right: 28px;
-        }
     }
 }
 
@@ -75,12 +114,6 @@
     height: 472px;
     display: flex;
     flex-direction: column;
-
-    p {
-        font-size: 18px;
-        line-height: 32px;
-        color: var(--color-2);
-    }
 
     hr {
         margin: 54px 0 28px;
@@ -103,15 +136,22 @@
             border-bottom: 3px solid transparent;
             text-transform: uppercase;
             letter-spacing: 2.7px;
-            transition: .3s;
+            transition: .4s;
 
             &:hover {
                 cursor: pointer;
-                border-bottom: 3px solid var(--color-3);
+                border-bottom: 3px solid var(--color-3-hover);
             }
+
         }
     }
 }
+
+.focus {
+    color: var(--color-3) !important;
+    border-bottom: 3px solid var(--color-3) !important;
+}
+
 
 .statistics {
     display: flex;
@@ -131,6 +171,50 @@
         line-height: 32px;
         text-transform: uppercase;
         font-size: 28px;
+    }
+}
+
+// transitions
+
+.appearance {
+    animation: appearance 1.5s ease;
+}
+
+.offsetX {
+    animation: offsetX .7s ease;
+}
+
+.offsetY {
+    animation: offsetY .7s ease;
+}
+
+@keyframes appearance {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes offsetX {
+    from {
+        transform: translateX(50px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes offsetY {
+    from {
+        transform: translateY(25px);
+    }
+
+    to {
+        transform: translateY(0px);
     }
 }
 </style>

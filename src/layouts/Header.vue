@@ -15,9 +15,9 @@ header {
     display: flex;
     place-content: space-between;
     place-items: center;
-    // max-width: 1385px;
     padding-top: 40px;
     padding-left: 55px;
+    padding-bottom: 76px;
 }
 
 hr {

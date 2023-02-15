@@ -1,4 +1,3 @@
-
 <script setup>
 import { RouterLink } from 'vue-router'
 </script>
@@ -29,7 +28,7 @@ nav {
         font-weight: 400;
         letter-spacing: 2.7px;
         border-bottom: 3px solid transparent;
-        transition: .3s;
+        transition: .4s;
 
         &:hover {
             mix-blend-mode: normal;

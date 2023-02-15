@@ -14,10 +14,12 @@ h4 {
 
 h1 {
     font-size: 150px;
+    line-height: 172px;
 }
 
 h2 {
     font-size: 100px;
+    line-height: 115px;
 }
 
 h3 {
@@ -29,16 +31,29 @@ h3 {
 h4 {
     font-size: 32px;
     line-height: 37px;
+    color: var(--color-3);
+    mix-blend-mode: normal;
+    opacity: 0.5;
 }
 
 h5 {
+    line-height: 34px;
     letter-spacing: 4.725px;
     font-size: 28px;
     text-transform: uppercase;
+
+    span {
+        mix-blend-mode: normal;
+        opacity: 0.25;
+        margin-right: 24px;
+    }
 }
 
 p {
     letter-spacing: 1.3px;
+    font-size: 18px;
+    line-height: 32px;
+    color: var(--color-2);
 }
 
 hr {
