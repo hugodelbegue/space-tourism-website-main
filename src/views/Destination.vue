@@ -152,7 +152,6 @@ export default {
     border-bottom: 3px solid var(--color-3) !important;
 }
 
-
 .statistics {
     display: flex;
     gap: 79px;

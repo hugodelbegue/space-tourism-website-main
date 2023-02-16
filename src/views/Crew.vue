@@ -18,7 +18,7 @@ import Crew from '@/assets/data/data.json'
                         <span @click="page('Anousheh Ansari')" :class="bulletFour"></span>
                     </div>
                 </div>
-                <div class="profil_background" v-if="data.name == this.name"
+                <div :class="profil" class="profil_background" v-if="data.name == this.name"
                     :style="{ 'background-image': 'url(' + imgUrl(data.images['webp']) + ')' }">
                 </div>
             </div>
@@ -68,6 +68,14 @@ export default {
         bulletFour() {
             return {
                 focus: this.name == 'Anousheh Ansari'
+            }
+        },
+        profil() {
+            return {
+                douglas: this.name == 'Douglas Hurley',
+                mark: this.name == 'Mark Shuttleworth',
+                victor: this.name == 'Victor Glover',
+                anousheh: this.name == 'Anousheh Ansari'
             }
         }
     }
@@ -130,10 +138,39 @@ export default {
 }
 
 .profil_background {
-    background-position-x: 100%;
+    position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
     width: 500px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.douglas {
+    width: 568.07px;
+    height: 712px;
+    left: 616.93px;
+    top: -24px;
+}
+
+.mark {
+    width: 453.44px;
+    height: 654px;
+    left: 638px;
+    top: 34px;
+}
+
+.victor {
+    width: 554.39px;
+    height: 681px;
+    left: 565px;
+    top: 37px;
+}
+
+.anousheh {
+    width: 615.57px;
+    height: 607px;
+    left: 591px;
+    top: 81px;
 }
 
 // transtions

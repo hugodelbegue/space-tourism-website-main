@@ -1,29 +1,70 @@
+<script setup>
+import Technology from '@/assets/data/data.json'
+</script>
+
 <template>
     <div class="technology">
         <div class="technologie_layout">
             <h5><span>03</span>Space launch 101</h5>
-            <div class="technology_container">
-                <div class="number_choice">
-                    <span>1</span>
-                    <span>2</span>
-                    <span>3</span>
+            <div class="content" v-for="data in Technology.technology">
+                <div class="technology_container" v-if="data.name == this.name">
+                    <div class="number_choice">
+                        <span @click="page('Launch vehicle')" :class="vehicle">1</span>
+                        <span @click="page('Spaceport')" :class="spaceport">2</span>
+                        <span @click="page('Space capsule')" :class="capsule">3</span>
+                    </div>
+                    <div class="description offsetYbottom" v-if="data.name && data.description">
+                        <h5>The terminology...</h5>
+                        <h3>{{ data.name }}</h3>
+                        <p>{{ data.description }}</p>
+                    </div>
+                    <img class="offsetYtop" :src="imgUrl(data.images['portrait'])"
+                        :alt="data.name + ' technology image'" v-if="data.images['portrait']">
                 </div>
-                <div class="description">
-                    <h5>The terminology...</h5>
-                    <h3>Launch vehicle</h3>
-                    <p>A launch vehicle or carrier rocket is a rocket-propelled vehicle used to carry a
-                        payload from Earth's surface to space, usually to Earth orbit or beyond. Our
-                        WEB-X carrier rocket is the most powerful in operation. Standing 150 metres tall,
-                        it's quite an awe-inspiring sight on the launch pad!</p>
-                </div>
-                <img src="../assets/img/technology/image-launch-vehicle-portrait.jpg" alt="">
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+    data() {
+        return {
+            name: 'Launch vehicle',
+            imgUrl(file) {
+                return new URL(`../assets/img/technology/${file}`, import.meta.url).href;
+            }
+        }
+    },
+    methods: {
+        page(name) {
+            if (name == Technology['technology'][0].name) {
+                return this.name = 'Launch vehicle';
+            } else if (name == Technology['technology'][1].name) {
+                return this.name = 'Spaceport';
+            } else if (name == Technology['technology'][2].name) {
+                return this.name = 'Space capsule';
+            }
+        }
+    },
+    computed: {
+        vehicle() {
+            return {
+                focus: this.name == 'Launch vehicle'
+            }
+        },
+        spaceport() {
+            return {
+                focus: this.name == 'Spaceport'
+            }
+        },
+        capsule() {
+            return {
+                focus: this.name == 'Space capsule'
+            }
+        },
+    }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -65,13 +106,13 @@
                 cursor: pointer;
                 border: 1px solid var(--color-3);
             }
-
-            &:active {
-                background: var(--color-3);
-                color: var(--color-1);
-            }
         }
     }
+}
+
+.focus {
+    background: var(--color-3) !important;
+    color: var(--color-1) !important;
 }
 
 .description {
@@ -91,6 +132,35 @@
 
     p {
         width: 444px;
+    }
+}
+
+// transitions
+.offsetYtop {
+    animation: offsetYtop .7s ease;
+}
+
+.offsetYbottom {
+    animation: offsetYbottom .7s ease;
+}
+
+@keyframes offsetYtop {
+    from {
+        transform: translateY(-25px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes offsetYbottom {
+    from {
+        transform: translateY(25px);
+    }
+
+    to {
+        transform: translateY(0px);
     }
 }
 </style>
