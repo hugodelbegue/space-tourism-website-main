@@ -5,12 +5,12 @@ import Crew from '@/assets/data/data.json'
 <template>
     <div class="crew">
         <div class="crew_layout">
+            <h5><span>02</span>Meet your crew</h5>
             <div class="content" v-for="data in Crew.crew">
                 <div class="description" v-if="data.name == this.name">
-                    <h5><span>02</span>Meet your crew</h5>
                     <h4 v-if="data.role" class="offsetX">{{ data.role }}</h4>
                     <h3 v-if="data.name" class="offsetX">{{ data.name }}</h3>
-                    <p v-if="data.bio" class="offsetX">{{ data.bio }}</p>
+                    <p v-if="data.bio" :class="width" class="offsetX">{{ data.bio }}</p>
                     <div class="bullet_list">
                         <span @click="page('Douglas Hurley')" :class="bulletOne"></span>
                         <span @click="page('Mark Shuttleworth')" :class="bulletTwo"></span>
@@ -77,35 +77,110 @@ export default {
                 victor: this.name == 'Victor Glover',
                 anousheh: this.name == 'Anousheh Ansari'
             }
+        },
+        width() {
+            return {
+                douglasText: this.name == 'Douglas Hurley',
+                markText: this.name == 'Mark Shuttleworth',
+                victorText: this.name == 'Victor Glover',
+                anoushehText: this.name == 'Anousheh Ansari'
+            }
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/responsive.scss';
+
 .crew_layout {
     padding-bottom: 94px;
 
-    .content {
-        display: flex;
-    }
-
     h5 {
         margin-bottom: 154px;
+
+        @media #{$tabletLandscape} {
+            margin-bottom: 60px;
+        }
+    }
+
+    .content {
+        display: flex;
+
+        @media #{$tabletLandscape} {
+            flex-direction: column;
+        }
+
+        @media #{$mobileDownScreen} {
+            flex-direction: column-reverse;
+        }
     }
 
     h4 {
         margin-bottom: 15px;
+
+        @media #{$tabletLandscape} {
+            margin-bottom: 8px;
+        }
+
+        @media #{$mobileDownScreen} {
+            margin-top: 32px;
+        }
     }
 
     h3 {
         margin-bottom: 27px;
+
+        @media #{$tabletLandscape} {
+            margin-bottom: 16px;
+        }
     }
 
     p {
         margin-bottom: 83px;
         width: 444px;
         height: 165px;
+
+        @media #{$tabletLandscape} {
+            margin: 0 auto 40px;
+            height: initial;
+        }
+
+        @media #{$mobileDownScreen} {
+            font-size: 15px;
+            line-height: 25px;
+            width: 327px;
+            margin: 0;
+        }
+    }
+
+    @media #{$tabletPortrait} {
+        .douglasText {
+            width: 458px;
+        }
+
+        .markText {
+            width: 520px;
+        }
+
+        .victorText {
+            width: 592px;
+        }
+
+        .anoushehText {
+            width: 536px;
+        }
+    }
+
+    h4,
+    h3,
+    p,
+    .bullet_list {
+        @media #{$tabletLandscape} {
+            display: flex;
+            place-content: center;
+            text-align: center;
+        }
     }
 }
 
@@ -125,9 +200,24 @@ export default {
             opacity: 0.17;
             transition: .4s;
 
-            &:hover {
-                cursor: pointer;
+            &:active {
                 opacity: .5;
+            }
+
+            @media #{$tactilUpScreen} {
+                &:hover {
+                    cursor: pointer;
+                    opacity: .5;
+                }
+            }
+
+            @media #{$tabletLandscape} {
+                width: 10px;
+                margin-bottom: 40px;
+            }
+
+            @media #{$mobileDownScreen} {
+                margin: 32px 0;
             }
         }
     }
@@ -141,41 +231,116 @@ export default {
     position: absolute;
     background-repeat: no-repeat;
     background-size: contain;
-    width: 500px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    @media #{$tabletLandscape} {
+        position: relative;
+        left: 0 !important;
+        top: 0 !important;
+        background-position-x: center;
+        margin: auto;
+    }
 }
 
 .douglas {
-    width: 568.07px;
+    width: 568px;
     height: 712px;
-    left: 616.93px;
+    left: 616px;
     top: -24px;
+
+    @media #{$desktopMediumScreen} {
+        width: 368px;
+        height: 512px;
+        top: 186px;
+    }
+
+    @media #{$tabletLandscape} {
+        width: 456px;
+        height: 572px;
+    }
+
+    @media #{$mobileDownScreen} {
+        width: 327px;
+        height: 223px;
+    }
 }
 
 .mark {
-    width: 453.44px;
+    width: 453px;
     height: 654px;
     left: 638px;
     top: 34px;
+
+    @media #{$desktopMediumScreen} {
+        width: 253px;
+        height: 412px;
+        top: 313px;
+    }
+
+    @media #{$tabletLandscape} {
+        width: 368px;
+        height: 532px;
+    }
+
+    @media #{$mobileDownScreen} {
+        width: 327px;
+        height: 223px;
+    }
 }
 
 .victor {
-    width: 554.39px;
+    width: 554px;
     height: 681px;
     left: 565px;
     top: 37px;
+
+    @media #{$desktopMediumScreen} {
+        width: 354px;
+        height: 481px;
+        top: 273px;
+    }
+
+    @media #{$tabletLandscape} {
+        width: 453px;
+        height: 532px;
+    }
+
+    @media #{$mobileDownScreen} {
+        width: 327px;
+        height: 223px;
+    }
 }
 
 .anousheh {
-    width: 615.57px;
+    width: 615px;
     height: 607px;
     left: 591px;
     top: 81px;
+
+    @media #{$desktopMediumScreen} {
+        width: 415px;
+        height: 407px;
+        top: 281px;
+    }
+
+    @media #{$tabletLandscape} {
+        width: 539px;
+        height: 532px;
+    }
+
+    @media #{$mobileDownScreen} {
+        width: 327px;
+        height: 223px;
+    }
 }
 
 // transtions
 .offsetX {
     animation: offsetX .7s ease;
+
+    @media #{$tabletPortrait} {
+        animation: offsetY .7s ease;
+    }
 }
 
 @keyframes offsetX {
@@ -185,6 +350,16 @@ export default {
 
     to {
         transform: translateX(0px);
+    }
+}
+
+@keyframes offsetY {
+    from {
+        transform: translateY(-25px);
+    }
+
+    to {
+        transform: translateY(0px);
     }
 }
 </style>

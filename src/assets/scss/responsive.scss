@@ -1,0 +1,17 @@
+  // Desktop
+  $desktopUpScreen: "only screen and (max-width: 1440px)";
+  $desktopMediumScreen: "only screen and (max-width: 1330px)";
+  $desktopDownScreen: "only screen and (max-width: 1120px)";
+
+  // Tablet
+  $tabletLandscape: "only screen and (max-width: 1024px)";
+  $tabletMedium: "only screen and (max-width: 920px)";
+  $tabletPortrait: "only screen and (max-width: 768px)";
+
+  // Mobile
+  $mobileUpScreen: "only screen and (max-width: 620px)";
+  $mobileMediumScreen: "only screen and (max-width: 520px)";
+  $mobileDownScreen: "only screen and (max-width: 375px)";
+
+  // Tactil links
+  $tactilUpScreen: "only screen and (min-width: 620px)";

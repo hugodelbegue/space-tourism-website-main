@@ -89,24 +89,76 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/responsive.scss';
+
 .destination_layout {
     padding-bottom: 118px;
     padding-right: 165px;
 
     h2 {
         margin: 37px 0 14px;
+
+        @media #{$tabletPortrait} {
+            margin: 32px 0 8px;
+        }
+
+        @media #{$mobileDownScreen} {
+            font-size: 56px;
+            line-height: 64px;
+            margin: 20px 0 1px;
+        }
     }
 
     h5 {
         margin-bottom: 64px;
     }
+
+    @media #{$desktopMediumScreen} {
+        padding-right: 100px;
+    }
+
+    @media #{$tabletLandscape} {
+        padding-bottom: 0;
+        padding-right: 0;
+    }
 }
 
 .destination_container {
     display: flex;
-    place-items: end;
+    place-items: center;
     place-content: space-between;
     margin-left: calc(230px - 166.5px);
+
+    @media #{$desktopDownScreen} {
+        margin-left: 0;
+    }
+
+    @media #{$tabletPortrait} {
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+img {
+    width: 445px;
+    height: auto;
+    aspect-ratio: 1/1;
+
+    @media #{$desktopMediumScreen} {
+        width: 350px;
+    }
+
+    @media #{$tabletLandscape} {
+        width: 325px;
+    }
+
+    @media #{$tabletMedium} {
+        width: 300px;
+    }
+
+    @media #{$mobileDownScreen} {
+        width: 170px;
+    }
 }
 
 .description {
@@ -119,6 +171,25 @@ export default {
         margin: 54px 0 28px;
         background: #383b4b;
         border: 1px solid #383b4b;
+
+        @media #{$tabletPortrait} {
+            margin: 49px 0 28px;
+            width: 100%;
+        }
+
+        @media #{$mobileDownScreen} {
+            margin: 32px 0;
+            width: 327px;
+        }
+    }
+
+    @media #{$tabletMedium} {
+        width: 315px;
+    }
+
+    @media #{$tabletPortrait} {
+        place-items: center;
+        width: 576px;
     }
 }
 
@@ -136,13 +207,34 @@ export default {
             border-bottom: 3px solid transparent;
             text-transform: uppercase;
             letter-spacing: 2.7px;
+            font-size: 16px;
+            line-height: 19px;
             transition: .4s;
 
-            &:hover {
-                cursor: pointer;
+            &:active {
                 border-bottom: 3px solid var(--color-3-hover);
             }
 
+            @media #{$tactilUpScreen} {
+                &:hover {
+                    cursor: pointer;
+                    border-bottom: 3px solid var(--color-3-hover);
+                }
+            }
+
+            @media #{$mobileDownScreen} {
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 2.35px;
+            }
+        }
+
+        @media #{$tabletPortrait} {
+            margin-top: 53px;
+        }
+
+        @media #{$mobileDownScreen} {
+            margin-top: 26px;
         }
     }
 }
@@ -160,7 +252,7 @@ export default {
         color: var(--color-2);
         font-size: 14px;
         line-height: 17px;
-        letter-spacing: 2.3625px;
+        letter-spacing: 2.35px;
         text-transform: uppercase;
         margin-bottom: 12px;
     }
@@ -170,6 +262,11 @@ export default {
         line-height: 32px;
         text-transform: uppercase;
         font-size: 28px;
+    }
+
+    @media #{$mobileDownScreen} {
+        flex-direction: column;
+        gap: 32px;
     }
 }
 

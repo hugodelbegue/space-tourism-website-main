@@ -20,6 +20,8 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/responsive.scss';
+
 .home_layout {
   display: flex;
   place-content: space-between;
@@ -27,14 +29,54 @@ import { RouterLink } from 'vue-router'
   padding-top: calc(251px - 76px);
   padding-bottom: 131px;
   padding-right: 165px;
+
+  @media #{$desktopMediumScreen} {
+    padding-left: 41px;
+    padding-right: 100px;
+  }
+
+  @media #{$desktopDownScreen} {
+    padding-left: 0;
+    padding-top: 66px;
+  }
+
+  @media #{$tabletLandscape} {
+    padding-right: 0;
+    place-items: center;
+  }
+
+  @media #{$tabletPortrait} {
+    flex-direction: column;
+    place-items: center;
+  }
+
+  @media #{$mobileDownScreen} {
+    padding-top: 0;
+  }
 }
 
-button {
-  text-transform: uppercase;
+h1 {
+  @media #{$tabletMedium} {
+    font-size: 125px;
+  }
+
+  @media #{$tabletPortrait} {
+    line-height: 150px;
+    font-size: 150px;
+  }
+
+  @media #{$mobileDownScreen} {
+    font-size: 80px;
+    line-height: 100px;
+  }
 }
 
 h5 {
   color: var(--color-2);
+
+  @media #{$mobileDownScreen} {
+    margin-bottom: 0 !important;
+  }
 }
 
 .description {
@@ -42,11 +84,42 @@ h5 {
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media #{$tabletMedium} {
+    width: 350px;
+  }
+
+  @media #{$tabletPortrait} {
+    width: 450px;
+    place-items: center;
+    text-align: center;
+    margin-bottom: 156px;
+  }
+
+  @media #{$mobileDownScreen} {
+    width: 327px;
+    margin-top: 0;
+    margin-bottom: 81px;
+    gap: 16px;
+  }
 }
 
 .button {
   width: 274px;
-  height: 274px;
+  height: auto;
+  aspect-ratio: 1/1;
+
+  @media #{$tabletLandscape} {
+    width: 258px;
+  }
+
+  @media #{$tabletPortrait} {
+    width: 242px;
+  }
+
+  @media #{$mobileDownScreen} {
+    width: 150px;
+  }
 
   button {
     z-index: 0;
@@ -60,6 +133,14 @@ h5 {
     line-height: 37px;
     letter-spacing: 2px;
     color: var(--color-1);
+    border-color: var(--color-3);
+    text-transform: uppercase;
+
+    @media #{$mobileDownScreen} {
+      font-size: 20px;
+      line-height: 23px;
+      letter-spacing: 1.25px;
+    }
 
     &::before {
       z-index: -1;
@@ -68,18 +149,41 @@ h5 {
       top: calc(50% - 450px /2);
       left: calc(50% - 450px /2);
       width: 450px;
-      height: 450px;
+      height: auto;
+      aspect-ratio: 1/1;
       border-radius: 50%;
       transition: background .3s;
       opacity: 0;
+      border-color: var(--color-3);
+
+      @media #{$tabletLandscape} {
+        width: 350px;
+        top: calc(50% - 350px /2);
+        left: calc(50% - 350px /2);
+      }
+
+      @media #{$mobileDownScreen} {
+        width: 200px;
+        top: calc(50% - 200px /2);
+        left: calc(50% - 200px /2);
+      }
     }
 
-    &:hover {
-      cursor: pointer;
-
+    &:active {
       &::before {
         background: var(--color-3);
         opacity: .1;
+      }
+    }
+
+    @media #{$tactilUpScreen} {
+      &:hover {
+        cursor: pointer;
+
+        &::before {
+          background: var(--color-3);
+          opacity: .1;
+        }
       }
     }
   }

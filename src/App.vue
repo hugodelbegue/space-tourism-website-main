@@ -26,26 +26,48 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/responsive.scss';
+
 .app_layout {
-  height: 100%;
+  // height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media #{$tabletPortrait} {
+    overflow-y: hidden;
+  }
 }
 
 .home {
   background-image: url(@/assets/img/home/background-home-desktop.jpg);
+
+  @media #{$tabletPortrait} {
+    background-image: url(@/assets/img/home/background-home-tablet.jpg);
+  }
 }
 
 .destination {
   background-image: url(@/assets/img/destination/background-destination-desktop.jpg);
+
+  @media #{$tabletPortrait} {
+    background-image: url(@/assets/img/destination/background-destination-tablet.jpg);
+  }
 }
 
 .crew {
   background-image: url(@/assets/img/crew/background-crew-desktop.jpg);
+
+  @media #{$tabletPortrait} {
+    background-image: url(@/assets/img/crew/background-crew-tablet.jpg);
+  }
 }
 
 .technology {
   background-image: url(@/assets/img/technology/background-technology-desktop.jpg);
+
+  @media #{$tabletPortrait} {
+    background-image: url(@/assets/img/technology/background-technology-tablet.jpg);
+  }
 }
 </style>

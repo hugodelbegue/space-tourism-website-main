@@ -12,6 +12,8 @@ import { RouterLink } from 'vue-router'
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/responsive.scss';
+
 nav {
     display: flex;
     place-content: space-between;
@@ -22,6 +24,15 @@ nav {
     background: rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(40.7742px);
     line-height: 89px;
+
+    @media #{$tabletLandscape} {
+        width: 600px;
+        padding: 40px 48px;
+    }
+
+    @media #{$tabletPortrait} {
+        width: 450px;
+    }
 
     a {
         text-transform: uppercase;
@@ -34,11 +45,20 @@ nav {
             mix-blend-mode: normal;
             border-bottom: 3px solid var(--color-3-hover);
         }
+
+        @media #{$tabletPortrait} {
+            font-size: 14px;
+            line-height: 92px;
+        }
     }
 
     span {
         font-weight: 700;
         margin-right: 11px;
+
+        @media #{$tabletPortrait} {
+            display: none;
+        }
     }
 }
 
