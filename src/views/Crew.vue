@@ -313,7 +313,7 @@ export default {
     width: 554px;
     height: 681px;
     left: 743px;
-    bottom: 0;
+    bottom: -30px;
 
     @media #{$desktopMediumScreen} {
         width: 354px;

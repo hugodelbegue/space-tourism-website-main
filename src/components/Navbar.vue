@@ -41,10 +41,13 @@ nav {
         border-bottom: 3px solid transparent;
         transition: .4s;
 
-        &:hover {
-            mix-blend-mode: normal;
+        @media #{$tactilUpScreen} {
+                &:hover {
+                    cursor: pointer;
+                    mix-blend-mode: normal;
             border-bottom: 3px solid var(--color-3-hover);
-        }
+                }
+            }
 
         @media #{$tabletPortrait} {
             font-size: 14px;

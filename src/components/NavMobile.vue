@@ -123,7 +123,7 @@ nav {
         }
     }
 
-    @media #{$tactilUpScreen} {
+    @media #{$menuScreen} {
         display: none;
     }
 }
@@ -131,7 +131,7 @@ nav {
 .show {
     display: flex !important;
 
-    @media #{$tactilUpScreen} {
+    @media #{$menuScreen} {
         display: initial !important;
     }
 }
@@ -140,7 +140,7 @@ nav {
     position: fixed;
     z-index: 2;
 
-    @media #{$tactilUpScreen} {
+    @media #{$menuScreen} {
         position: static;
     }
 }
