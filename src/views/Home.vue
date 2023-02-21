@@ -118,6 +118,7 @@ h5 {
 }
 
 .button {
+  position: relative;
   width: 274px;
   height: auto;
   aspect-ratio: 1/1;
