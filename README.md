@@ -27,8 +27,8 @@ Users should be able to:
 
 ### Screenshot
 
-![](./preview_desktop.svg)
-![](./preview_mobile.svg)
+![](./design/preview_desktop.svg)
+![](./design/preview_mobile.svg)
 
 ### Links
 
