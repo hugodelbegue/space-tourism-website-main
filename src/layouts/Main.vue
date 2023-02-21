@@ -12,7 +12,9 @@ import { RouterView } from 'vue-router'
 @import '@/assets/scss/responsive.scss';
 
 main {
+    position: relative;
     padding-left: 165px;
+    z-index: 1;
 
     @media #{$desktopMediumScreen} {
         padding-left: 100px;

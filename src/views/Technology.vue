@@ -229,6 +229,10 @@ export default {
         text-align: center;
         width: 458px;
     }
+
+    @media #{$mobileMediumScreen} {
+        width: 361px;
+    }
 }
 
 img {
@@ -243,6 +247,10 @@ img {
     @media #{$tabletLandscape} {
         margin-bottom: 56px;
         align-self: center;
+        width: calc(100% + (59px*2));
+    }
+
+    @media #{$tabletPortrait} {
         width: calc(100% + (39px*2));
     }
 

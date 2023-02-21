@@ -29,13 +29,13 @@ export default {
 @import '@/assets/scss/responsive.scss';
 
 .app_layout {
-  // height: 100vh;
   width: 100%;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 
-  @media #{$tabletPortrait} {
-    overflow-y: hidden;
+  @media #{$tabletLandscape} {
+    height: 100vh;
   }
 }
 

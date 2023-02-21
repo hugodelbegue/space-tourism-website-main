@@ -172,6 +172,15 @@ export default {
         }
     }
 
+    .douglasText,
+    .markText,
+    .victorText,
+    .anoushehText {
+        @media #{$mobileUpScreen} {
+            width: auto;
+        }
+    }
+
     h4,
     h3,
     p,
@@ -245,18 +254,24 @@ export default {
 .douglas {
     width: 568px;
     height: 712px;
-    left: 616px;
-    top: -24px;
+    left: 734px;
+    bottom: 0;
 
     @media #{$desktopMediumScreen} {
         width: 368px;
         height: 512px;
-        top: 186px;
+        left: 634px;
+        bottom: -10px;
     }
 
     @media #{$tabletLandscape} {
         width: 456px;
         height: 572px;
+    }
+
+    @media #{$mobileMediumScreen} {
+        width: 306px;
+        height: 422px;
     }
 
     @media #{$mobileDownScreen} {
@@ -268,18 +283,24 @@ export default {
 .mark {
     width: 453px;
     height: 654px;
-    left: 638px;
-    top: 34px;
+    left: 800px;
+    bottom: 0;
 
     @media #{$desktopMediumScreen} {
         width: 253px;
         height: 412px;
-        top: 313px;
+        left: 634px;
+        bottom: -38px;
     }
 
     @media #{$tabletLandscape} {
         width: 368px;
         height: 532px;
+    }
+
+    @media #{$mobileMediumScreen} {
+        width: 300px;
+        height: 382px;
     }
 
     @media #{$mobileDownScreen} {
@@ -291,18 +312,24 @@ export default {
 .victor {
     width: 554px;
     height: 681px;
-    left: 565px;
-    top: 37px;
+    left: 743px;
+    bottom: 0;
 
     @media #{$desktopMediumScreen} {
         width: 354px;
         height: 481px;
-        top: 273px;
+        left: 559px;
+        bottom: -65px;
     }
 
     @media #{$tabletLandscape} {
         width: 453px;
         height: 532px;
+    }
+
+    @media #{$mobileMediumScreen} {
+        width: 306px;
+        height: 382px;
     }
 
     @media #{$mobileDownScreen} {
@@ -314,18 +341,28 @@ export default {
 .anousheh {
     width: 615px;
     height: 607px;
-    left: 591px;
-    top: 81px;
+    left: 735px;
+    bottom: 0;
 
     @media #{$desktopMediumScreen} {
         width: 415px;
         height: 407px;
-        top: 281px;
+        left: 586px;
     }
 
     @media #{$tabletLandscape} {
         width: 539px;
         height: 532px;
+    }
+
+    @media #{$mobileUpScreen} {
+        width: 416px;
+        height: 382px;
+    }
+
+    @media #{$mobileMediumScreen} {
+        width: 306px;
+        height: 422px;
     }
 
     @media #{$mobileDownScreen} {

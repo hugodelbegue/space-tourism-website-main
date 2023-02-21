@@ -50,6 +50,10 @@ import { RouterLink } from 'vue-router'
     place-items: center;
   }
 
+  @media #{$mobileMediumScreen} {
+    padding-top: 25px;
+  }
+
   @media #{$mobileDownScreen} {
     padding-top: 0;
   }
@@ -63,6 +67,11 @@ h1 {
   @media #{$tabletPortrait} {
     line-height: 150px;
     font-size: 150px;
+  }
+
+  @media #{$mobileMediumScreen} {
+    font-size: 110px;
+    line-height: 120px;
   }
 
   @media #{$mobileDownScreen} {
@@ -96,10 +105,14 @@ h5 {
     margin-bottom: 156px;
   }
 
-  @media #{$mobileDownScreen} {
-    width: 327px;
+  @media #{$mobileMediumScreen} {
+    width: 350px;
     margin-top: 0;
     margin-bottom: 81px;
+  }
+
+  @media #{$mobileDownScreen} {
+    width: 327px;
     gap: 16px;
   }
 }
@@ -115,6 +128,10 @@ h5 {
 
   @media #{$tabletPortrait} {
     width: 242px;
+  }
+
+  @media #{$mobileMediumScreen} {
+    width: 200px;
   }
 
   @media #{$mobileDownScreen} {
@@ -160,6 +177,12 @@ h5 {
         width: 350px;
         top: calc(50% - 350px /2);
         left: calc(50% - 350px /2);
+      }
+
+      @media #{$mobileMediumScreen} {
+        width: 250px;
+        top: calc(50% - 250px /2);
+        left: calc(50% - 250px /2);
       }
 
       @media #{$mobileDownScreen} {

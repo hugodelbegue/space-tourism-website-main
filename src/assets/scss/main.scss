@@ -22,7 +22,7 @@ h2 {
     font-size: 100px;
     line-height: 115px;
 
-    @media #{$tabletPortrait} {
+    @media #{$tabletMedium} {
         font-size: 80px;
         line-height: 92px;
     }

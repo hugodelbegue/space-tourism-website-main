@@ -3,7 +3,7 @@ import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-    <nav>
+    <nav class="nav_desktop">
         <RouterLink to="/"><span>00</span>Home</RouterLink>
         <RouterLink to="/destination"><span>01</span>Destination</RouterLink>
         <RouterLink to="/crew"><span>02</span>Crew</RouterLink>
@@ -64,5 +64,11 @@ nav {
 
 .router-link-active {
     border-bottom: 3px solid var(--color-3);
+}
+
+.nav_desktop {
+    @media #{$mobileUpScreen} {
+        display: none;
+    }
 }
 </style>

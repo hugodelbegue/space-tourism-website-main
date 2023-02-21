@@ -156,6 +156,10 @@ img {
         width: 300px;
     }
 
+    @media #{$mobileMediumScreen} {
+        width: 250px;
+    }
+
     @media #{$mobileDownScreen} {
         width: 170px;
     }
@@ -190,6 +194,14 @@ img {
     @media #{$tabletPortrait} {
         place-items: center;
         width: 576px;
+    }
+
+    @media #{$mobileUpScreen} {
+        width: 400px;
+    }
+
+    @media #{$mobileMediumScreen} {
+        width: 350px;
     }
 }
 

@@ -1,5 +1,6 @@
 <script setup>
 import Navbar from '@/components/Navbar.vue'
+import NavMobile from '../components/NavMobile.vue'
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import Navbar from '@/components/Navbar.vue'
         <img alt="Space logo" class="logo" src="@/assets/shared/logo.svg" width="48" height="48" />
         <hr>
         <Navbar />
+        <NavMobile />
     </header>
 </template>
 
@@ -20,17 +22,23 @@ header {
     padding-top: 40px;
     padding-left: 55px;
     padding-bottom: 76px;
+    position: relative;
 
     @media #{$tabletLandscape} {
         padding-bottom: 40px;
         padding-left: 39px;
-        padding-top: 0;
+        padding-top: 40px;
+    }
+
+    @media #{$mobileMediumScreen} {
+        padding-top: 30px;
+        padding-bottom: 30px;
+        padding-left: 24px;
     }
 
     @media #{$mobileDownScreen} {
         padding-bottom: 24px;
-        padding-left: 24px;
-        padding-right: 24px;
+        padding-top: 24px;
     }
 }
 
