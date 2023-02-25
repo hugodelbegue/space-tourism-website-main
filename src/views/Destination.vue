@@ -1,5 +1,16 @@
 <script setup>
 import Destination from '@/assets/data/data.json'
+import { ref } from 'vue'
+
+const planetName = ref('Moon');
+function page(name) {
+    for (const destination of Destination['destinations']) {
+        if (name === destination.name) {
+            planetName.value = destination.name;
+            break;
+        }
+    }
+}
 </script>
 
 <template>
@@ -7,17 +18,17 @@ import Destination from '@/assets/data/data.json'
         <div class="destination_layout">
             <h5><span>01</span>Pick your destination</h5>
             <div class="content" v-for="data in Destination.destinations">
-                <div class="destination_container" v-if="data.name == this.name">
+                <div class="destination_container" v-if="data.name == planetName">
                     <div class="picture_container appearance" v-if="data.images['webp']">
                         <img :src="imgUrl(data.images['webp'])" :alt="data.name + ' planet image'">
                     </div>
                     <div class="description">
                         <div class="planet_nav">
                             <ul>
-                                <li @click="page('Moon')" :class="moon">Moon</li>
-                                <li @click="page('Mars')" :class="mars">Mars</li>
-                                <li @click="page('Europa')" :class="europa">Europa</li>
-                                <li @click="page('Titan')" :class="titan">Titan</li>
+                                <li @click="page('Moon'), underline('Moon')" :class="moon">Moon</li>
+                                <li @click="page('Mars'), underline('Mars')" :class="mars">Mars</li>
+                                <li @click="page('Europa'), underline('Europa')" :class="europa">Europa</li>
+                                <li @click="page('Titan'), underline('Titan')" :class="titan">Titan</li>
                             </ul>
                         </div>
                         <h2 class="offsetX" v-if="data.name">{{ data.name }}</h2>
@@ -51,16 +62,17 @@ export default {
         }
     },
     methods: {
-        page(name) {
-            if (name == Destination['destinations'][0].name) {
-                return this.name = 'Moon';
-            } else if (name == Destination['destinations'][1].name) {
-                return this.name = 'Mars';
-            } else if (name == Destination['destinations'][2].name) {
-                return this.name = 'Europa';
-            } else if (name == Destination['destinations'][3].name) {
-                return this.name = 'Titan';
+        underline(name) {
+            const destinations = Destination['destinations'];
+            const names = destinations.map(destination => destination.name);
+            const index = names.indexOf(name);
+
+            if (index >= 0) {
+                const planet = destinations[index].name;
+                this.name = planet;
+                return planet;
             }
+            return null;
         }
     },
     computed: {
@@ -214,6 +226,7 @@ img {
         padding-left: 0;
 
         li {
+            cursor: pointer;
             height: 100%;
             color: var(--color-2);
             border-bottom: 3px solid transparent;
@@ -229,7 +242,6 @@ img {
 
             @media #{$tactilUpScreen} {
                 &:hover {
-                    cursor: pointer;
                     border-bottom: 3px solid var(--color-3-hover);
                 }
             }

@@ -140,6 +140,7 @@ h5 {
   }
 
   button {
+    cursor: pointer;
     z-index: 0;
     width: 100%;
     height: 100%;
@@ -202,8 +203,6 @@ h5 {
 
     @media #{$tactilUpScreen} {
       &:hover {
-        cursor: pointer;
-
         &::before {
           background: var(--color-3);
           opacity: .1;

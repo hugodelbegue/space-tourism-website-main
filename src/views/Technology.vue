@@ -1,5 +1,16 @@
 <script setup>
 import Technology from '@/assets/data/data.json'
+import { ref } from 'vue'
+
+const machineName = ref('Launch vehicle');
+function page(name) {
+    for (const technology of Technology['technology']) {
+        if (name === technology.name) {
+            machineName.value = technology.name;
+            break;
+        }
+    }
+}
 </script>
 
 <template>
@@ -7,12 +18,12 @@ import Technology from '@/assets/data/data.json'
         <div class="technologie_layout">
             <h5><span>03</span>Space launch 101</h5>
             <div class="content" v-for="data in Technology.technology">
-                <div class="technology_container" v-if="data.name == this.name">
+                <div class="technology_container" v-if="data.name == machineName">
                     <div class="description_container">
                         <div class="number_choice">
-                            <span @click="page('Launch vehicle')" :class="vehicle">1</span>
-                            <span @click="page('Spaceport')" :class="spaceport">2</span>
-                            <span @click="page('Space capsule')" :class="capsule">3</span>
+                            <span @click="page('Launch vehicle'), underline('Launch vehicle')" :class="vehicle">1</span>
+                            <span @click="page('Spaceport'), underline('Spaceport')" :class="spaceport">2</span>
+                            <span @click="page('Space capsule'), underline('Space capsule')" :class="capsule">3</span>
                         </div>
                         <div class="description offsetYbottom" v-if="data.name && data.description">
                             <h5>The terminology...</h5>
@@ -35,21 +46,23 @@ export default {
     data() {
         return {
             name: 'Launch vehicle',
-            cla: '',
             imgUrl(file) {
                 return new URL(`../assets/img/technology/${file}`, import.meta.url).href;
             }
         }
     },
     methods: {
-        page(name) {
-            if (name == Technology['technology'][0].name) {
-                return this.name = 'Launch vehicle';
-            } else if (name == Technology['technology'][1].name) {
-                return this.name = 'Spaceport';
-            } else if (name == Technology['technology'][2].name) {
-                return this.name = 'Space capsule';
+        underline(name) {
+            const technology = Technology['technology'];
+            const names = technology.map(technology => technology.name);
+            const index = names.indexOf(name);
+
+            if (index >= 0) {
+                const machine = technology[index].name;
+                this.name = machine;
+                return machine;
             }
+            return null;
         }
     },
     computed: {
@@ -117,6 +130,7 @@ export default {
         gap: 32px;
 
         span {
+            cursor: pointer;
             display: flex;
             place-items: center;
             place-content: center;
@@ -137,7 +151,6 @@ export default {
 
             @media #{$tactilUpScreen} {
                 &:hover {
-                    cursor: pointer;
                     border: 1px solid var(--color-3);
                 }
             }

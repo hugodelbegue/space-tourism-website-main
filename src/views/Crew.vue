@@ -1,5 +1,16 @@
 <script setup>
 import Crew from '@/assets/data/data.json'
+import { ref } from 'vue'
+
+const profilName = ref('Douglas Hurley');
+function page(name) {
+    for (const crew of Crew['crew']) {
+        if (name === crew.name) {
+            profilName.value = crew.name;
+            break;
+        }
+    }
+}
 </script>
 
 <template>
@@ -7,18 +18,18 @@ import Crew from '@/assets/data/data.json'
         <div class="crew_layout">
             <h5><span>02</span>Meet your crew</h5>
             <div class="content" v-for="data in Crew.crew">
-                <div class="description" v-if="data.name == this.name">
+                <div class="description" v-if="data.name == profilName">
                     <h4 v-if="data.role" class="offsetX">{{ data.role }}</h4>
                     <h3 v-if="data.name" class="offsetX">{{ data.name }}</h3>
                     <p v-if="data.bio" :class="width" class="offsetX">{{ data.bio }}</p>
                     <div class="bullet_list">
-                        <span @click="page('Douglas Hurley')" :class="bulletOne"></span>
-                        <span @click="page('Mark Shuttleworth')" :class="bulletTwo"></span>
-                        <span @click="page('Victor Glover')" :class="bulletThree"></span>
-                        <span @click="page('Anousheh Ansari')" :class="bulletFour"></span>
+                        <span @click="page('Douglas Hurley'), underline('Douglas Hurley')" :class="bulletOne"></span>
+                        <span @click="page('Mark Shuttleworth'), underline('Mark Shuttleworth')" :class="bulletTwo"></span>
+                        <span @click="page('Victor Glover'), underline('Victor Glover')" :class="bulletThree"></span>
+                        <span @click="page('Anousheh Ansari'), underline('Anousheh Ansari')" :class="bulletFour"></span>
                     </div>
                 </div>
-                <div :class="profil" class="profil_background" v-if="data.name == this.name"
+                <div :class="profil" class="profil_background" v-if="data.name == profilName"
                     :style="{ 'background-image': 'url(' + imgUrl(data.images['webp']) + ')' }">
                 </div>
             </div>
@@ -37,16 +48,17 @@ export default {
         }
     },
     methods: {
-        page(name) {
-            if (name == Crew['crew'][0].name) {
-                return this.name = 'Douglas Hurley';
-            } else if (name == Crew['crew'][1].name) {
-                return this.name = 'Mark Shuttleworth';
-            } else if (name == Crew['crew'][2].name) {
-                return this.name = 'Victor Glover';
-            } else if (name == Crew['crew'][3].name) {
-                return this.name = 'Anousheh Ansari';
+        underline(name) {
+            const crew = Crew['crew'];
+            const names = crew.map(crew => crew.name);
+            const index = names.indexOf(name);
+
+            if (index >= 0) {
+                const profil = crew[index].name;
+                this.name = profil;
+                return profil;
             }
+            return null;
         }
     },
     computed: {
@@ -200,6 +212,7 @@ export default {
 
         span {
             content: "";
+            cursor: pointer;
             width: 15px;
             height: auto;
             aspect-ratio: 1/1;
@@ -215,7 +228,6 @@ export default {
 
             @media #{$tactilUpScreen} {
                 &:hover {
-                    cursor: pointer;
                     opacity: .5;
                 }
             }
